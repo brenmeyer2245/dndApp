@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DnDApp.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Books</h2>
+
+<div style="display: flex;">
+
+    <div style="border: 2px solid #808080">
+        <h4> Blood Wet Sands </h4>
+        <div style="display: flex">
+            @foreach (var Book in Model)
+            {
+                if (Book.Series == "Blood Wet Sands")
+                {
+                    <div style="background-color:firebrick; padding: 2em; margin: 2em; border: 2px solid black;">
+                       @Html.ActionLink(@Book.BookName, "ChaptersIndex", "Episode", new { id = Book.Id}, new { color = "black"})
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <div  style="border: 2px solid #808080">
+        <h4>Veil of Spears</h4>
+        <div style="display: flex">
+            @foreach (var Book in Model)
+            {
+                if (Book.Series == "Veil of Spears")
+                {
+                    <div style="background-color:firebrick; padding: 2em; margin: 2em; border: 2px solid black;">
+                        <div style="background-color:firebrick; padding: 2em; margin: 2em; border: 2px solid black;">
+                            @Html.ActionLink(@Book.BookName, "ChaptersIndex", "Episode", new { id = Book.Id}, new { color = "black"})
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+</div>
+
+
