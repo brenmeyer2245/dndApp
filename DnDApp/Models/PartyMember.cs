@@ -24,6 +24,12 @@ namespace DnDApp.Models
 
         public int? StatId { get; set; }
 
+        [Column(TypeName = "text")]
+        public string Bio { get; set; }
+
+        [Column(TypeName = "text")]
+        public string Headshot { get; set; }
+
         public virtual PlayerStat PlayerStat { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

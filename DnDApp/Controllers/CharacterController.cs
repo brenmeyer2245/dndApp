@@ -5,22 +5,29 @@ using System.Web;
 using System.Web.Mvc;
 using DnDApp.Models;
 using DnDApp.Repositories;
+using DnDApp.Services;
 
 namespace DnDApp.Controllers
 {
     public class CharacterController : Controller
     {
-        private readonly CharacterRepository characterRepo = new CharacterRepository();
+        private readonly ICharacterService _characterService;
+
+        public CharacterController(ICharacterService characterService)
+        {
+            _characterService = characterService;
+        }
+
         // GET: Character
         public ActionResult Index()
         {
-            return View(characterRepo.GetCharacters());
+            return View(_characterService.GetCharacters());
         }
 
         // GET: Character/Details/5
         public ActionResult Details(int id)
         {
-            return View(characterRepo.GetCharacter(id));
+            return View(_characterService.GetCharacter(id));
         }
 
         // GET: Character/Create

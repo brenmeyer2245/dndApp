@@ -1,0 +1,18 @@
+﻿@using DnDApp.Services;
+@{
+    var currentUser = new CurrentUserService().GetCurrentUser();
+}
+
+<li> Testing </li>
+
+@if (currentUser.username != null)
+{
+    <text>
+        @Html.ActionLink("Log out", "SignOut", "Account")
+        (Logged in as @currentUser.Name!)
+    </text>
+}
+else
+{
+    @Html.ActionLink("Log in", "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "green" })
+}

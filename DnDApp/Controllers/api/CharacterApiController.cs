@@ -13,12 +13,12 @@ namespace DnDApp.Controllers.api
 {
     public class CharacterApiController : ApiController
     {
-        private readonly CharacterRepository characterRepository = new CharacterRepository();
+        private readonly EFCharacterRepository characterRepository = new EFCharacterRepository();
         // GET: CharacterApi
         [System.Web.Http.HttpGet]
         public HttpResponseMessage ChangePlayerNameBrendan(int id)
         {
-            characterRepository.MakePlayerBrendan(id);
+        
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }

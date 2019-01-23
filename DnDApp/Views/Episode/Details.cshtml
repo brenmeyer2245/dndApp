@@ -1,52 +1,47 @@
-﻿@model DnDApp.Models.Episode
+﻿@using DnDApp.Common;
+@model DnDApp.Models.Episode
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var Dummy = new DummyStuff();
 
 }
 
-<h2>Details</h2>
+<div id="episode-content">
+    <div class="rock-holder"></div>
+    <div id="episode-header">
+        
+        <h2>Chapter 1 : Test Chapter </h2>
 
-<div>
-    <h4>Episode</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.BookName)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Book.BookName)
-        </dd>
+    <div id="episode-summary">
+        <p> @Dummy.LoremIpsum </p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EpisodeName)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.EpisodeName)
-        </dd>
+    <div>
+        <h3> Characters </h3>
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-around;">
+        @foreach (var item in Model.PlayerEpisodes)
+        {
+            <div class = "character-profile-container">
+                
+                    <img  class="character-profile-headshot" src="~/Content/Images/DummyTemple.jpg" />
+                    @* item.PartyMember.Headshot *@
+               
+                <div class="character-profile-title">
+                    @item.PartyMember.Name
+                </div>
+            </div>
+        }
+          </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ChapterNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ChapterNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-    </dl>
 </div>
 <p>
+    <a href="~/Views/Episode/Details.cshtml">~/Views/Episode/Details.cshtml</a>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

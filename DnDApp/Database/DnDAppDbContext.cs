@@ -5,6 +5,7 @@ namespace DnDApp.DataBase
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using DnDApp.Models;
+
     public partial class DnDAppDbContext : DbContext
     {
         public DnDAppDbContext()
@@ -17,6 +18,7 @@ namespace DnDApp.DataBase
         public virtual DbSet<PartyMember> PartyMembers { get; set; }
         public virtual DbSet<PlayerEpisode> PlayerEpisodes { get; set; }
         public virtual DbSet<PlayerStat> PlayerStats { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -36,14 +38,42 @@ namespace DnDApp.DataBase
                 .Property(e => e.Description)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Episode>()
+                .Property(e => e.EpisodeAudio)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Episode>()
+                .Property(e => e.EpisodePhoto)
+                .IsUnicode(false);
+
             modelBuilder.Entity<PartyMember>()
                 .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PartyMember>()
+                .Property(e => e.Bio)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PartyMember>()
+                .Property(e => e.Headshot)
                 .IsUnicode(false);
 
             modelBuilder.Entity<PartyMember>()
                 .HasMany(e => e.PlayerEpisodes)
                 .WithOptional(e => e.PartyMember)
                 .HasForeignKey(e => e.PlayerId);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.username)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.password)
+                .IsUnicode(false);
         }
     }
 }

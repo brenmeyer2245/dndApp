@@ -1,6 +1,10 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-size: cover;
+    background-image:url("Images/background-board-brown.jpg");
+    color: white;
+   
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -14,4 +18,228 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+#play-bar {
+    position: fixed;
+    left: 1em;
+    top: 10em;
+    background: darkred;
+    color: white;
+    width: 10em;
+    height: 10em;
+    text-align: center;
+    padding: 1em;
+    border-radius: 1em 1em 1em 1em;
+    box-shadow: black 0.2em 0.1em 0.8em 0.1em;
+}
+
+#content-box {
+    position: absolute;
+    left: 20vw;
+    width: 70vw;
+    overflow: inherit;
+}
+
+#episode-header {
+    background-size: cover;
+    background-position-y: center;
+    height: 35vh;
+    width: 100%;
+    color: white;
+}
+
+#episode-content {
+    background-image: url("Images/Parchment_Background.jpg");
+    box-shadow: black 0.1em 0.1em 0.3em 0.1em;
+    color: white; 
+    font-family:'MS Gothic';
+}
+    #episode-header h2 {
+        left: 25%;
+        position: relative;
+        top: 50%;
+        right: 50%;
+    }
+
+.character-profile-container {
+    display: flex;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-top: 1em;
+    color: black;
+    height: -webkit-fill-available;
+    background-position-x: center;
+    background-image: url(http://jbmeyer.org/wp-content/uploads/2018/07/ShatteredSands/pics/Jhanos2.jpg);
+    background-size: cover;
+}
+
+
+
+.character-profile-headshot {
+    display: none;
+    height: 10em;
+    width: 8em;
+    margin-right: 1em;
+}
+
+
+.character-profile-description {
+    display: none;
+    width: inherit;
+    max-width: 75%;
+    overflow-wrap: break-word;
+    color: black;
+    padding: 1em;
+}
+
+.character-profile-info {
+    position: relative;
+    top: 80%;
+    left: 7%;
+    width: 15em;
+    /* border: .2em solid black; */
+    height: 3em;
+   
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.outer1 {
+    margin: 5em;
+    padding: .5em;
+    background-image: url("Images/brown-card-texture.jpg");
+    color: black;
+    border-radius: .41em;
+    box-shadow: 0.3em 0.3em 0.9em 0.3em;
+    transition: all 3s;
+    transition-delay: 1s;
+}
+
+
+.outer2 {
+    border-left: .5em;
+    border-right: .5em;
+    border-top: 1px;
+    border-bottom: 1px;
+}
+
+.inner1 {
+    border: 2px solid black;
+    width: 18em;
+    height: 24em;
+}
+
+.inner2 {
+
+}
+
+.outer1.clicked {
+   transform: translateY(-500em);    
+}
+
+.outer1.detailed {
+    position: relative;
+    top: -500em;
+    width: 19em;
+    animation: dropin 4s linear forwards;
+}
+
+@keyframes dropin {
+    0% {
+        top:-500em;
+    }
+
+    30% {
+        top: -100em;
+    }
+    100% {
+        top: 0em;
+    }
+
+}
+
+@keyframes mymove {
+    from {
+        top: 0px;
+    }
+
+    to {
+        top: 200px;
+    }
+}
+
+.book-cover {
+    background-image: url(Images/Old_Book_2.jpg);
+    height: 50em;
+    background-size: cover;
+    width: 37em;
+    margin: 2em;
+    border-radius: 1em;
+    box-shadow: 1em 1em 1em 1em black;
+}
+
+.book-title {
+    text-align: center;
+    position: relative;
+    top: 20%;
+    left: 25%;
+    font-size: x-large;
+    color: white;
+    font-family: cursive;
+}
+
+.rock-holder {
+    background-image: url(/Content/Images/old_rock.png);
+    background-size: cover;
+    height: 10em;
+    width: 13em;
+    position: fixed;
+    left: 75%;
+}
+
+#profile-details-container {
+    position: relative;
+    top: 2em;
+    background-image: url("https://static.wixstatic.com/media/c402ee_338705311d594f14919eec42be0efdcb.png_srz_979_1375_85_22_0.50_1.20_0.00_png_srz");
+    color: black;
+    margin-top: 1em;
+    width: 27em;
+    height: 100%;
+    background-size: cover;
+    text-align: center;
+}
+
+#profile-details-container h1{
+    padding: 1em;
+}
+
+
+.profile-details-text {
+  
+    position: relative;
+    left: 3em;
+    padding: .5em;
+}
+
+.profile-stats-container {
+    height: 10em;
+    width: 75%;
+    position: relative;
+    left: 12%;
+    top: 10%;
+    display: flex;
+    /* box-shadow: 1em 0.7em 1em; */
+    padding: 1em;
+    border-radius: 1em 1em;
+}
+
+.profile-stats-square {
+  
+    background: firebrick;
+    height: 1em;
+    width: 1em;
+    border: .1px solid black;
+    margin-left: 1em;
+    box-shadow: 0.05em 0.01em 0.02em 0.001em;
 }

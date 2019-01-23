@@ -2,9 +2,19 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-   
 }
 
+@{ 
+    var STR = Model.PlayerStat.Strength;
+    int[] strArr = Enumerable.Repeat(0, Model.PlayerStat.Strength).ToArray();
+    int[] chaArr = Enumerable.Repeat(0, Model.PlayerStat.Charisma).ToArray();
+
+    int[] wisArr = Enumerable.Repeat(0, Model.PlayerStat.Wisdom).ToArray();
+    int[] conArr = Enumerable.Repeat(0, Model.PlayerStat.Constitution).ToArray();
+    int[] intArr = Enumerable.Repeat(0, Model.PlayerStat.Intelligence).ToArray();
+    int[] dexArr = Enumerable.Repeat(0, Model.PlayerStat.Dexterity).ToArray();
+
+}
 <!DOCTYPE html>
 
 <html>
@@ -14,39 +24,87 @@
 </head>
 <body>
     <div>
-        <h4>PartyMember</h4>
-        <hr />
-        <dl class="dl-horizontal">
+        <div style="display: flex;" >
+            <div id="profile-card-container">
+                <div class="outer1 detailed">
+                    <div class="outer2">
+                        <div class="inner1">
+                            <div class="inner2">
+                                <div class="character-profile-container">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="character-profile-info">
+                            <span>@Model.Name</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+            <div id="profile-details-container">
+                <h1> @Model.Name</h1>
+                <div style="text-align:left">
+                    <span class="profile-details-text">@Model.Level</span> 
+                    <br />
+                    <span class="profile-details-text">Race: Human</span>
+                    <br />
+                    <span class="profile-details-text">Class: Rogue </span>
+                    <div class="profile-details-text">
+                        @Model.Bio
+                        A few sentences
+                    </div>
+                </div>
+                <div class="profile-stats-container">
+                    <table>
+                        <tr>
+                            <td> Str </td>
+                            @foreach (var strMod in strArr)
+                            {
+                                <td class="profile-stats-square"></td>}
+                        </tr>
+                    
+                        <tr>
+                            <td> Dex </td>
+                            @foreach (var dexMod in dexArr)
+                            {
+                                <td class="profile-stats-square"></td>}
 
-    
-            <dd>
-                @Html.DisplayFor(model => model.PlayerStat.StatId)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Level)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Level)
-            </dd>
-            <dt>
-                <p onclick="DnDApp.Ajax.ChangeCharacterNameToBrendan(@Model.Id)">Change Name to Brendan</p>
-            </dt>
-    
-        </dl>
+                        </tr>
+
+                        <tr>
+                            <td> Cha </td>
+                            @foreach (var chaMod in chaArr)
+                            {
+                                <td class="profile-stats-square"></td>}
+
+                        </tr>
+                        <tr>
+                            <td> Con </td>
+                            @foreach (var conMod in conArr)
+                            {
+                                <td class="profile-stats-square"></td>}
+                        </tr>
+                        <tr>
+
+                            <td> Wis </td>
+                            @foreach (var wisMod in wisArr)
+                            {
+                                <td class="profile-stats-square"></td>}
+                        </tr>
+                        <tr>
+                            <td> Int </td>
+                            @foreach (var intMod in intArr)
+                            {
+                                <td class="profile-stats-square"></td>
+                            }
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                
+
+            </div>
+        </div>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
 </body>
 </html>
