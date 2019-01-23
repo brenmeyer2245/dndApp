@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -53,6 +56,9 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
@@ -115,6 +121,30 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Abstractions, Version=3.3.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.2.5.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.8.13.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.5.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.1.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc5, Version=1.3.0.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc5.1.3.0\lib\net45\Unity.Mvc5.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.1.9.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.1.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -158,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -191,6 +222,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Common\CacheKeys.cs" />
     <Compile Include="Common\CacheExpirations.cs" />
+    <Compile Include="Common\DummyStuff.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\AccountApiController.cs" />
     <Compile Include="Controllers\api\CharacterApiController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CharacterController.cs" />
@@ -205,11 +239,23 @@
     <Compile Include="Models\PartyMember.cs" />
     <Compile Include="Models\PlayerEpisode.cs" />
     <Compile Include="Models\PlayerStat.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\BookRepository.cs" />
-    <Compile Include="Repositories\CharacterRepository.cs" />
-    <Compile Include="Repositories\EpisodeRepository.cs" />
+    <Compile Include="Repositories\EFBookRepository.cs" />
+    <Compile Include="Repositories\EFCharacterRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICharacterRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IEpisodeRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\EFEpisodeRepository.cs" />
     <Compile Include="Repositories\PlayerEpisodeRepository.cs" />
+    <Compile Include="Services\EFEpisodeService.cs" />
+    <Compile Include="Services\EFCharacterService.cs" />
+    <Compile Include="Services\EFBookService.cs" />
+    <Compile Include="Services\CurrentUserService.cs" />
+    <Compile Include="Services\Interfaces\IBookService.cs" />
+    <Compile Include="Repositories\Interfaces\IBookRepository.cs" />
+    <Compile Include="Services\Interfaces\ICharacterService.cs" />
+    <Compile Include="Services\Interfaces\IEpisodeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -217,6 +263,18 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\background-board-brown.jpg" />
+    <Content Include="Content\Images\brown-card-texture.jpg" />
+    <Content Include="Content\Images\DummyTemple.jpg" />
+    <Content Include="Content\Images\Old_Book_2.jpg" />
+    <Content Include="Content\Images\old_rock.png" />
+    <Content Include="Content\Images\Parchment_Background.jpg" />
+    <Content Include="Content\Images\profile_paper.jpg" />
+    <Content Include="Content\Images\stats_paper.jpg" />
+    <Content Include="Content\Images\Stat_Square1.jpg" />
+    <Content Include="Content\Images\wood_floor.jpg" />
+    <Content Include="Content\Images\wood_table.jpg" />
+    <Content Include="Content\Images\Old_Book_Cover.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -244,6 +302,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\profile_details_paper.00_png_srz" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -265,11 +324,20 @@
     <Content Include="Views\Episode\Details.cshtml" />
     <Content Include="Views\Character\Index.cshtml" />
     <Content Include="Views\Character\Details.cshtml" />
+    <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Web.config" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\EpisodeCharacters.cshtml" />
+    <Content Include="Views\Account\SignOut.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\ViewModels\" />
     <Folder Include="Views\CharacterApi\" />
   </ItemGroup>
   <ItemGroup>

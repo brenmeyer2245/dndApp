@@ -7,18 +7,18 @@
 }
 
 <h2>Books</h2>
-
-<div style="display: flex;">
+<h1> @ViewBag.Name</h1>
+<div>
 
     <div style="border: 2px solid #808080">
         <h4> Blood Wet Sands </h4>
-        <div style="display: flex">
+        <div style="display: flex; flex-wrap: wrap;">
             @foreach (var Book in Model)
             {
                 if (Book.Series == "Blood Wet Sands")
                 {
-                    <div style="background-color:firebrick; padding: 2em; margin: 2em; border: 2px solid black;">
-                       @Html.ActionLink(@Book.BookName, "ChaptersIndex", "Episode", new { id = Book.Id}, new { color = "black"})
+                    <div class="book-cover">
+                       @Html.ActionLink(@Book.BookName, "ChaptersIndex", "Episode", new { id = Book.Id}, new { @class = "book-title"} )
                     </div>
                 }
             }
@@ -26,16 +26,16 @@
     </div>
 
     <div  style="border: 2px solid #808080">
-        <h4>Veil of Spears</h4>
         <div style="display: flex">
+            <h4>Veil of Spears</h4>
             @foreach (var Book in Model)
             {
                 if (Book.Series == "Veil of Spears")
                 {
-                    <div style="background-color:firebrick; padding: 2em; margin: 2em; border: 2px solid black;">
-                        <div style="background-color:firebrick; padding: 2em; margin: 2em; border: 2px solid black;">
-                            @Html.ActionLink(@Book.BookName, "ChaptersIndex", "Episode", new { id = Book.Id}, new { color = "black"})
-                        </div>
+                    <div class="book-cover" style="background-image: url(/Content/Images/Old_Book_Cover.jpg);">
+                        
+                            @Html.ActionLink(@Book.BookName, "ChaptersIndex", "Episode", new { id = Book.Id }, new { @class="book-title" })
+                        
                     </div>
                 }
             }

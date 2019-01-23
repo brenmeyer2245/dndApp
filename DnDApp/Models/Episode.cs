@@ -26,6 +26,12 @@ namespace DnDApp.Models
         [StringLength(1500)]
         public string Description { get; set; }
 
+        [Column(TypeName = "text")]
+        public string EpisodeAudio { get; set; }
+
+        [Column(TypeName = "text")]
+        public string EpisodePhoto { get; set; }
+
         public virtual Book Book { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

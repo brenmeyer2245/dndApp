@@ -4,31 +4,40 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DnDApp.Repositories;
+using DnDApp.Services;
 
 namespace DnDApp.Controllers
 {
     public class EpisodeController : Controller
     {
-        private readonly BookRepository bookRepository = new BookRepository();
-        private readonly EpisodeRepository _episodeRepo = new EpisodeRepository();
+
+        private readonly IEpisodeService _episodeService;
+        private readonly IBookService _bookService;
+
+        public EpisodeController(IEpisodeService episodeService, IBookService bookService)
+        {
+            _episodeService = episodeService;
+            _bookService = bookService;
+        }
+
         // GET: Episode
         public ActionResult Index()
         {
-            return View(_episodeRepo.GetEpisodes());
+            return View(_episodeService.GetEpisodes());
         }
 
 
         public ActionResult ChaptersIndex(int id)
         {
 
-            var episodes = _episodeRepo.GetEpisodes(id);
-            ViewBag.BookName = bookRepository.GetBook(id).BookName;
+            var episodes = _episodeService.GetEpisodes(id);
+            ViewBag.BookName = _bookService.GetBook(id).BookName;
             return View(episodes);
         }
-        // GET: Episode/Details/5
+        //// GET: Episode/Details/5
         public ActionResult Details(int id)
         {
-            return View(_episodeRepo.GetEpisode(id));
+            return View(_episodeService.GetEpisode(id));
         }
 
         // GET: Episode/Create

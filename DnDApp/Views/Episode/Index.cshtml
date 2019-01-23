@@ -17,33 +17,24 @@
             @Html.DisplayNameFor(model => model.EpisodeName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BookName)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.ChapterNumber)
         </th>
-        <th></th>
+        <th>
+            Book Name
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.EpisodeName)
+            @Html.ActionLink(item.EpisodeName, "Details", new { id = item.Id}, new { color = "green"})
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BookName)
+           @item.ChapterNumber
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ChapterNumber)
+            @item.Book.BookName
         </td>
-
-        <td>
-          @foreach(var character in item.PlayerEpisodes)
-          {
-              <span>@character.PartyMember.Name | </span>
-          }
-        </td>
-
     </tr>
 }
 

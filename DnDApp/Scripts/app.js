@@ -1,5 +1,4 @@
 ﻿var DnDApp = DnDApp || {};
-console.log("Hello!!!");
 DnDApp.Ajax = (function () {
 
     var ajaxGet = function(url, success, failure) {
@@ -13,7 +12,6 @@ DnDApp.Ajax = (function () {
                 failure(request.statusText)
             }
         }
-        console.log("Here?")
         request.send();
     }
 
@@ -24,11 +22,15 @@ DnDApp.Ajax = (function () {
         console.log(message);
     }
 
+   
+
     return {
         Init: function () { },
         ChangeCharacterNameToBrendan: function (characterId) {
             ajaxGet('/api/CharacterApi/ChangePlayerNameBrendan/' + characterId, ajaxReload, ajaxfailure)
+        },
+        SignOut: function () {
+            ajaxGet('api/AccountApi/SignOut')
         }
-
     }
 })()
