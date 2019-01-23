@@ -5,6 +5,7 @@ using System.Web;
 using DnDApp.Models;
 using DnDApp.DataBase;
 using DnDApp.Repositories;
+using DnDApp.Common;
 
 namespace DnDApp.Repositories
 {
@@ -13,9 +14,16 @@ namespace DnDApp.Repositories
         private readonly DnDAppDbContext _db = new DnDAppDbContext();
 
 
-        public IEnumerable<PartyMember> GetCharacters()
+        public IEnumerable<PartyMember> GetCharacters(bool bypassing = false)
         {
-            return _db.PartyMembers.ToList();
+            if (!bypassing && HttpRuntime.Cache["Characters"] is IEnumerable<PartyMember> characters)
+            {
+                return characters;
+            }
+
+            var characterList = _db.PartyMembers.ToList();
+            HttpRuntime.Cache.Insert("Characters", characterList, null, DateTime.Now.Add(CacheExpirations.DefaultTimeSpan), TimeSpan.Zero)
+            return characterList;
         }
 
         public PartyMember GetCharacter(int CharacterId)

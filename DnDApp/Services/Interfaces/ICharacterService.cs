@@ -9,7 +9,7 @@ namespace DnDApp.Services
 {
     public interface ICharacterService
     {
-        IEnumerable<PartyMember> GetCharacters();
+        IEnumerable<PartyMember> GetCharacters(bool bypassing = false);
         PartyMember GetCharacter(int id);
     }
 }
