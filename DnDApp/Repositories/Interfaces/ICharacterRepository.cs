@@ -8,7 +8,7 @@ namespace DnDApp.Repositories
 {
     public interface ICharacterRepository
     {
-        IEnumerable<PartyMember> GetCharacters();
+        IEnumerable<PartyMember> GetCharacters(bool bypassing = false);
          PartyMember GetCharacter(int id);
     }
 }

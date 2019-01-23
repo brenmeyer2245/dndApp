@@ -21,9 +21,9 @@ namespace DnDApp.Services
             return _characterRepository.GetCharacter(id);
         }
 
-        public IEnumerable<PartyMember> GetCharacters()
+        public IEnumerable<PartyMember> GetCharacters(bool bypassing = false)
         {
-            return _characterRepository.GetCharacters();
+            return _characterRepository.GetCharacters(bypassing);
         }
     }
 }
