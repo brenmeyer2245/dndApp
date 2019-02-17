@@ -1,5 +1,10 @@
 ﻿@using DnDApp.Services;
 @using DnDApp.Models;
+
+@{ 
+    var audioPlayer = ViewBag.AudioPlayer;
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +15,10 @@
 
 
     @Styles.Render("~/Content/css")
+
     @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     @{
@@ -30,12 +38,12 @@
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Episode", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Episodes", "Index", "Episode", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Books", "Index", "Book")</li>
                     <li>@Html.ActionLink("Characters", "Index", "Character", new { area = "" }, null)</li>
                                            
-                    @if (currentUser == null){
-                        <li class="navbar-text">@Html.ActionLink("Log In","SignIn", "Account")</li>
+                    @if (currentUser.Name == "N/A"){
+                        <li>@Html.ActionLink("Log In","SignIn", "Account")</li>
                     } else
                     {
                         <a  class="navbar-text" href="#"> Welcome @currentUser.Name </a>
@@ -47,9 +55,9 @@
     </div>
 
     <div>
-        <div id="play-bar">
-            <div id="test"> Test </div>
-        </div>
+       
+        @RenderPage("~/Views/Shared/AudioPlayer.cshtml")
+
     <div id="content-box" class="container body-content">
         @RenderBody()
        
@@ -59,7 +67,6 @@
     </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)

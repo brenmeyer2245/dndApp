@@ -1,4 +1,4 @@
-﻿using DnDApp.App_Start.Config;
+﻿using DnDApp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace DnDApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            UnityConfig.RegisterComponents();
+           
         }
     
     void Session_Start(object sender, EventArgs e)

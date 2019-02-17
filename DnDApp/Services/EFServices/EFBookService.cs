@@ -25,5 +25,15 @@ namespace DnDApp.Services
         {
             return _bookRepository.GetBook(id);
         }
+
+        public bool CreateBook(Book book)
+        {
+            return _bookRepository.CreateBook(book);
+        }
+
+        public Book EditBook(Book book)
+        {
+           return _bookRepository.EditBook(book);
+        }
     }
 }

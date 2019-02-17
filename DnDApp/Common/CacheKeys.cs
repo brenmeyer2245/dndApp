@@ -9,5 +9,6 @@ namespace DnDApp.Common
     {
         public const string AllEpisodes = "ALL_EPISODES";
         public const string AllBooks = "ALL_BOOKS";
+        public const string AllCharacters = "ALL_CHARACTERS";
     }
 }

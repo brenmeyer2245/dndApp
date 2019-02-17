@@ -12,5 +12,7 @@ namespace DnDApp.Services
     {
         IEnumerable<Book> GetBooks(bool bypassing = false);
         Book GetBook(int id);
+        bool CreateBook(Book book);
+        Book EditBook(Book book);
     }
 }

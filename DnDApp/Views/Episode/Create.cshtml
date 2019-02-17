@@ -1,0 +1,47 @@
+﻿@model DnDApp.Models.Episode
+ @{ 
+     
+ }
+
+<h1> New Episode </h1>
+
+@using (Html.BeginForm("Create", "Character", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(model => model.EpisodeName)
+        @Html.TextBoxFor(model => model.EpisodeName)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Book.BookName)
+        @Html.TextBoxFor(model => model.Book.BookName)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.ChapterNumber)
+        @Html.TextBoxFor(model => model.ChapterNumber)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.EpisodeAudio)
+        @Html.TextBoxFor(model => model.EpisodeAudio)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.EpisodePhoto)
+        @Html.TextBoxFor(model => model.EpisodePhoto)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.PlayerEpisodes)
+       @Html.CheckBox("test", true)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description)
+    </div>
+
+    <input type="submit" value="Submit" />
+}
+
+

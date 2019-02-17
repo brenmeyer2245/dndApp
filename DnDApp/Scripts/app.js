@@ -16,7 +16,7 @@ DnDApp.Ajax = (function () {
     }
 
     var ajaxReload = function (message) {
-        location.reload();
+        console.log("Hello", message)
     }
     var ajaxfailure = (message) => {
         console.log(message);
@@ -31,6 +31,17 @@ DnDApp.Ajax = (function () {
         },
         SignOut: function () {
             ajaxGet('api/AccountApi/SignOut')
+        },
+
+        ChangeAudio: function (url, episodeTitle) {
+            console.log(url)
+            ajaxGet('/api/PlayerApi/ChangeEpisode?url=' + url + '&episodeTitle=' + episodeTitle, ajaxReload, ajaxfailure)
+           
+        },
+        AddCharactersToEpisode: function (episodeId, charactersArray) {
+            let characters = charactersArray.join();
+            ajaxGet('/api/EpisodeApi/AddCharactersToEpisode?episodeId=' + episodeId + '&charactersList=' + characters, ajaxReload, ajaxfailure) 
         }
+
     }
 })()

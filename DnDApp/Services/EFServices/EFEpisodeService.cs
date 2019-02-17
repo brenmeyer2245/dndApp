@@ -31,5 +31,16 @@ namespace DnDApp.Services
         {
            return _episodeRepository.GetEpisodes(bookId);
         }
+
+        public void CreateEpisode(Episode episode)
+        {
+            _episodeRepository.CreateEpisode(episode);
+        }
+
+        public void AddCharactersToEpisode(int id, string[] characterNames)
+        {
+            _episodeRepository.AddCharactersToEpisode(id, characterNames);
+        }
+
     }
 }

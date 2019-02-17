@@ -25,5 +25,15 @@ namespace DnDApp.Services
         {
             return _characterRepository.GetCharacters(bypassing);
         }
+
+        public void CreateCharacter(PartyMember character)
+        {
+            _characterRepository.CreateCharacter(character);
+        }
+
+        public PartyMember EditCharacter(PartyMember character)
+        {
+          return _characterRepository.EditCharacter(character);
+        }
     }
 }

@@ -18,5 +18,9 @@ namespace DnDApp.Models
 
         [StringLength(50)]
         public string password { get; set; }
+
+        public int? AudioPlayerId { get; set; }
+
+        public virtual AudioPlayer AudioPlayer { get; set; }
     }
 }

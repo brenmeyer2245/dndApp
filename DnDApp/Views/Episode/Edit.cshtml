@@ -1,0 +1,86 @@
+﻿@model DnDApp.Models.Episode
+@{ 
+    var BookList = ViewBag.BookList;
+
+}
+
+
+<div style="color:black;">
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.Label("Name")
+            @Html.TextBoxFor(model => model.EpisodeName)
+        </div>
+        <div>
+            @Html.Label("Book")
+
+
+            @Html.DropDownListFor(model => model.BookId, ViewData["selectList"] as List<SelectListItem>)
+        </div>
+        <div>
+            @Html.Label("Chapter")
+            @Html.TextBoxFor(model => model.ChapterNumber)
+        </div>
+        <div>
+            @Html.Label("Audio Url")
+            @Html.TextBoxFor(model => model.EpisodeAudio)
+        </div>
+        <div>
+            @Html.Label("Photo Url")
+            @Html.TextBoxFor(model => model.EpisodePhoto)
+        </div>
+        <div>
+            @Html.Label("Description")
+            @Html.TextAreaFor(model => model.Description)
+        </div>
+
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#charactersAddModal"> Add Characters</button>
+
+        <div class="modal fade" id="charactersAddModal" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    @foreach (var character in ViewBag.CharactersInEpisode)
+                    {
+                        <div>
+                            <label name="checkbox">   @character.Text</label>
+
+                            <input type="checkbox" class="checkbox" name="Check" value="@character.Text">
+
+                            <br>
+                        </div>
+                    }
+                    <div class="modal-footer"> 
+                        <button type="button" class="btn" data-dismiss="modal"> Close </button>
+                        <button id="submitCharacters" type="button" class="btn-primary" data-dismiss="modal" >Save Changes</button>
+                    </div>
+                    </div>
+            </div>
+        </div>
+
+        <input type="submit" value="Submit" />
+    }
+</div>
+
+<script> 
+    let charactersInEpisode = [];
+    $('.checkbox').change(
+        function (evt) {
+            console.log(this);
+            if (this.checked) charactersInEpisode.push(this.value);
+            else {
+                let idx = charactersInEpisode.indexOf(this.value) 
+                 charactersInEpisode.splice(idx, 1);
+            }
+            console.log(charactersInEpisode)
+        }
+    )
+
+    $('#submitCharacters').click(function (evt) {
+        console.log("Yooooo", @Model.Id, charactersInEpisode)
+        DnDApp.Ajax.AddCharactersToEpisode(@Model.Id, charactersInEpisode)
+        evt.preventDefault();
+    })
+    
+</script>

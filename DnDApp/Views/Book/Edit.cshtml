@@ -1,0 +1,20 @@
+﻿@model DnDApp.Models.Book
+
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.TextBoxFor(model => model.Id)
+    </div>
+    <div style="color: black;">
+        @Html.Label("Name")
+        @Html.TextBoxFor(model => model.BookName)
+    </div>
+
+    <div style="color: black;">
+        @Html.Label("Series")
+        @Html.TextBoxFor(model => model.Series)
+    </div>
+    <input type="submit" value="Submit" />
+
+}

@@ -1,0 +1,20 @@
+﻿@model DnDApp.Models.Book
+
+<h1> New Book </h1>
+<div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div style="color: black;">
+            @Html.Label("Name")
+            @Html.TextBoxFor(model => model.BookName)
+        </div>
+
+        <div style="color: black;">
+            @Html.Label("Series")
+            @Html.TextBoxFor(model => model.Series)
+        </div>
+    <input type="submit" value="Submit" />
+    }
+</div>
