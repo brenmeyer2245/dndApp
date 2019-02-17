@@ -42,5 +42,29 @@ namespace DnDApp.Repositories
                 .SingleOrDefault(_ => _.Id == EpisodeId);
         }
 
+        public void CreateEpisode(Episode episode)
+        {
+          
+            _db.Episodes.Add(episode);
+            _db.SaveChanges();
+
+            HttpRuntime.Cache.Remove(CacheKeys.AllEpisodes);
+        }
+
+        public void AddCharactersToEpisode(int id, string[] characterNames)
+        {
+            var Episode = _db.Episodes.SingleOrDefault(_ => _.Id == id);
+            _db.PlayerEpisodes.RemoveRange(Episode.PlayerEpisodes);
+            foreach(var name in characterNames)
+            {
+                //get the character from the DB. 
+                var character  = _db.PartyMembers.SingleOrDefault(_ => _.Name == name);
+                //Add it to the episode 
+                _db.PlayerEpisodes.Add(new PlayerEpisode { EpisodeId = id, Episode = Episode, PartyMember = character, PlayerId = character.Id });
+            }
+            _db.SaveChanges();
+
+            HttpRuntime.Cache.Remove(CacheKeys.AllEpisodes);
+        }
     }
 }

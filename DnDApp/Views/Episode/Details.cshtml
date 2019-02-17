@@ -5,14 +5,15 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var Dummy = new DummyStuff();
-
 }
 
 <div id="episode-content">
-    <div class="rock-holder"></div>
+    <div id="rock-holder">
+        <h4> Play Episode</h4>
+    </div>
     <div id="episode-header">
         
-        <h2>Chapter 1 : Test Chapter </h2>
+        <h2>@Model.ChapterNumber : @Model.EpisodeName </h2>
 
     </div>
 
@@ -45,3 +46,17 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<script> 
+   
+    $('#rock-holder').click(function (evt) {
+        
+         $('#audioPlayer-episodeTitle').text('@Model.EpisodeName');
+         $('#audio-player-source').attr('src', '@Model.EpisodeAudio');
+
+
+        DnDApp.Ajax.ChangeAudio('@Model.EpisodeAudio', '@Model.EpisodeName');
+        evt.preventDefault();
+    });
+    
+</script>

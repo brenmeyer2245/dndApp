@@ -9,10 +9,11 @@ namespace DnDApp.DataBase
     public partial class DnDAppDbContext : DbContext
     {
         public DnDAppDbContext()
-            : base("name=DnDAppDbContext")
+            : base("name=DnDAppDbContext_New")
         {
         }
 
+        public virtual DbSet<AudioPlayer> AudioPlayer { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Episode> Episodes { get; set; }
         public virtual DbSet<PartyMember> PartyMembers { get; set; }
@@ -22,6 +23,14 @@ namespace DnDApp.DataBase
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AudioPlayer>()
+                .Property(e => e.audioUrl)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AudioPlayer>()
+                .Property(e => e.episodeTitle)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Book>()
                 .Property(e => e.BookName)
                 .IsUnicode(false);

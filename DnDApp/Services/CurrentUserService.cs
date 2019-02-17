@@ -20,7 +20,12 @@ namespace DnDApp.Services
             if (null == HttpContext.Current.Session["CurrentUser"])
             {
                 // HttpContext.Current.Session["CurrentUser"] = EnsureUser("dude");
-                return null;
+                return new User {
+                    Name = "N/A",
+                    username = "N/A",
+                    password = "N/A"
+                    
+                };
             }
 
 
@@ -44,6 +49,7 @@ namespace DnDApp.Services
                     Name = upn
                 };
             }
+            
             return user;
         }
 

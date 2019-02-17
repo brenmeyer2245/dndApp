@@ -12,6 +12,10 @@ namespace DnDApp.Repositories
         IEnumerable<Episode> GetEpisodes(bool bypassing = false);
         IEnumerable<Episode> GetEpisodes(int bookId);
         Episode GetEpisode(int EpisodeId);
-       
+        
+        void CreateEpisode(Episode episode);
+        void AddCharactersToEpisode(int id, string[] characterNames);
+
+
 }
 }

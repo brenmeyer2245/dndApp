@@ -38,11 +38,11 @@ namespace DnDApp.Controllers
 
         // POST: Character/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(PartyMember character)
         {
             try
             {
-                // TODO: Add insert logic here
+                _characterService.CreateCharacter(character);
 
                 return RedirectToAction("Index");
             }
@@ -55,23 +55,22 @@ namespace DnDApp.Controllers
         // GET: Character/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var characterToEdit = _characterService.GetCharacter(id);
+            return View(characterToEdit);
         }
 
         // POST: Character/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(PartyMember character)
         {
-            try
-            {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+               var editedCharacter = _characterService.EditCharacter(character);
+                if (editedCharacter == null)
+                {
+                return RedirectToAction("NotFound", "ErrorHandler");
+                }
+                return RedirectToAction("Details", new { id = character.Id});
+     
         }
 
         // GET: Character/Delete/5

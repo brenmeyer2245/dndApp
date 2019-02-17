@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DnDApp.Models;
 using DnDApp.Repositories;
 using DnDApp.Services;
 
@@ -13,11 +14,13 @@ namespace DnDApp.Controllers
 
         private readonly IEpisodeService _episodeService;
         private readonly IBookService _bookService;
+        private readonly ICharacterService _characterService;
 
-        public EpisodeController(IEpisodeService episodeService, IBookService bookService)
+        public EpisodeController(IEpisodeService episodeService, IBookService bookService, ICharacterService characterService)
         {
             _episodeService = episodeService;
             _bookService = bookService;
+            _characterService = characterService;
         }
 
         // GET: Episode
@@ -48,11 +51,11 @@ namespace DnDApp.Controllers
 
         // POST: Episode/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Episode episode)
         {
             try
             {
-                // TODO: Add insert logic here
+                _episodeService.CreateEpisode(episode);
 
                 return RedirectToAction("Index");
             }
@@ -65,12 +68,22 @@ namespace DnDApp.Controllers
         // GET: Episode/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var bookList = _bookService.GetBooks();
+            ViewData["selectList"] = new List<SelectListItem>(bookList.Select(_ => new SelectListItem { Text = _.BookName, Value = _.Id.ToString() }));
+            ViewBag.BookList = bookList;
+
+            var characterList = _characterService.GetCharacters();
+            var episode = _episodeService.GetEpisode(id);
+            ViewBag.SelectedCharacterNames = episode.PlayerEpisodes.Select(_ => _.PartyMember.Name);
+            ViewBag.CharactersInEpisode = new List<SelectListItem>(characterList.Select(character => new SelectListItem { Text = character.Name }));
+           
+
+            return View(episode);
         }
 
         // POST: Episode/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Episode episode)
         {
             try
             {

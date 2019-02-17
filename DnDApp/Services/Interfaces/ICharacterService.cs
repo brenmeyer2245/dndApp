@@ -11,5 +11,8 @@ namespace DnDApp.Services
     {
         IEnumerable<PartyMember> GetCharacters(bool bypassing = false);
         PartyMember GetCharacter(int id);
+        void CreateCharacter(PartyMember character);
+        PartyMember EditCharacter(PartyMember character);
+
     }
 }

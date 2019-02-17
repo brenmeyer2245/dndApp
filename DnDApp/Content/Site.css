@@ -26,8 +26,8 @@ textarea {
     top: 10em;
     background: darkred;
     color: white;
-    width: 10em;
-    height: 10em;
+    width: 15em;
+    height: 12em;
     text-align: center;
     padding: 1em;
     border-radius: 1em 1em 1em 1em;
@@ -106,14 +106,14 @@ textarea {
 }
 
 .outer1 {
-    margin: 5em;
+    margin: 1em;
     padding: .5em;
     background-image: url("Images/brown-card-texture.jpg");
     color: black;
     border-radius: .41em;
     box-shadow: 0.3em 0.3em 0.9em 0.3em;
     transition: all 3s;
-    transition-delay: 1s;
+
 }
 
 
@@ -189,14 +189,22 @@ textarea {
     font-family: cursive;
 }
 
-.rock-holder {
+#rock-holder {
     background-image: url(/Content/Images/old_rock.png);
     background-size: cover;
     height: 10em;
     width: 13em;
     position: fixed;
     left: 75%;
+    color: black;
 }
+
+    #rock-holder h4 {
+        color: antiquewhite;
+        top: 4em;
+        position: relative;
+        left: 2em;
+    }
 
 #profile-details-container {
     position: relative;
@@ -242,4 +250,10 @@ textarea {
     border: .1px solid black;
     margin-left: 1em;
     box-shadow: 0.05em 0.01em 0.02em 0.001em;
+}
+
+#audioPlayer-audio {
+    width: 14em;
+    position: relative;
+    right: .5em;
 }

@@ -1,0 +1,25 @@
+﻿@using DnDApp.Services
+@using DnDApp.Models
+@{
+    var currentUserService = new CurrentUserService();
+    var currentUser = currentUserService.GetCurrentUser();
+}
+
+
+<div id="play-bar">
+
+    @if (currentUser == null || currentUser.AudioPlayer == null)
+        {
+            <h3>Audio Player</h3>
+        } else
+        {
+            <h3 class="user-name-display"> @currentUser.Name</h3>
+            <p id="audioPlayer-episodeTitle">@currentUser.AudioPlayer.episodeTitle</p>
+            <audio id="audioPlayer-audio" controls>
+                <source id="audio-player-source" src="@currentUser.AudioPlayer.audioUrl" type="audio/mp3"/>
+            </audio>
+        }
+</div>
+
+
+
