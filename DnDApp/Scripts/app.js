@@ -34,14 +34,21 @@ DnDApp.Ajax = (function () {
         },
 
         ChangeAudio: function (url, episodeTitle) {
-            console.log(url)
-            ajaxGet('/api/PlayerApi/ChangeEpisode?url=' + url + '&episodeTitle=' + episodeTitle, ajaxReload, ajaxfailure)
-           
+            let audio = document.getElementById('audioPlayer');
+            let source = document.getElementById('audioPlayer-source');
+            document.getElementById('audioPlayer-episodeTitle').innerHTML = episodeTitle;
+            source.src = url;
+            audio.load();
+            audio.play();
         },
         AddCharactersToEpisode: function (episodeId, charactersArray) {
             let characters = charactersArray.join();
             ajaxGet('/api/EpisodeApi/AddCharactersToEpisode?episodeId=' + episodeId + '&charactersList=' + characters, ajaxReload, ajaxfailure) 
-        }
-
+        },
     }
 })()
+
+
+function updateAudio(episodeName, episodeUrl) {
+
+}

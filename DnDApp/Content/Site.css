@@ -70,7 +70,7 @@ textarea {
     color: black;
     height: -webkit-fill-available;
     background-position-x: center;
-    background-image: url(http://jbmeyer.org/wp-content/uploads/2018/07/ShatteredSands/pics/Jhanos2.jpg);
+    background-image: url(http://http://www.jbmeyer.org/wp-content/uploads/2018/07/ShatteredSands/pics/characters/Kal_headshot_cartoon.png);
     background-size: cover;
 }
 
@@ -252,8 +252,11 @@ textarea {
     box-shadow: 0.05em 0.01em 0.02em 0.001em;
 }
 
+#audioPlayer{
+    width: 100%;
+}
 #audioPlayer-audio {
-    width: 14em;
+    width: 2em;
     position: relative;
     right: .5em;
 }
