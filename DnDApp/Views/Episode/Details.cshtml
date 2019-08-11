@@ -50,11 +50,6 @@
 <script> 
    
     $('#rock-holder').click(function (evt) {
-        
-         $('#audioPlayer-episodeTitle').text('@Model.EpisodeName');
-         $('#audio-player-source').attr('src', '@Model.EpisodeAudio');
-
-
         DnDApp.Ajax.ChangeAudio('@Model.EpisodeAudio', '@Model.EpisodeName');
         evt.preventDefault();
     });
